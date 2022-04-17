@@ -4,7 +4,8 @@ import {
   Select,
   SelectGroup,
   SelectItem,
-  Button
+  Button,
+  Text
 } from "@ui-kitten/components";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
@@ -20,19 +21,24 @@ const Registration = () => {
   const [selectedSpecialityIndex, setSelectedSpecialityIndex] = useState();
   const [selectedGroupIndex, setSelectedGroupIndex] = useState();
   const [selectedCourseIndex, setSelectedCourseIndex] = useState();
+  const [passwordValue, setPasswordValue] = useState();
+
 
 
   const renderFaculties = faculties.map(title => (<SelectItem title={title}/>))
 
   return (
     <Layout style={styles.container}>
+      <Text style={styles.headline} category="h1">Реєстрація</Text>
       <Input
+        style={styles.formItem}
         placeholder="Пошта"
         value={value}
         onChangeText={(nextValue) => setValue(nextValue)}
       />
 
       <Select
+        style={styles.formItem}
         placeholder="Факультет"
         value={faculties[selectedFacultyIndex-1]}
         selectedIndex={selectedFacultyIndex}
@@ -44,7 +50,7 @@ const Registration = () => {
       {/* ======================================= */}
 
       <Select
-        style={styles.select}
+        style={styles.formItem}
         placeholder="Спеціальність / Освітня программа"
         selectedIndex={selectedSpecialityIndex}
         onSelect={(index) => setSelectedSpecialityIndex(index)}
@@ -64,6 +70,7 @@ const Registration = () => {
       {/* ============================================== */}
 
       <Select
+        style={styles.formItem}
         placeholder="Группа"
         selectedIndex={selectedGroupIndex}
         onSelect={(index) => setSelectedGroupIndex(index)}
@@ -77,6 +84,7 @@ const Registration = () => {
       </Select>
 
       <Select
+        style={styles.formItem}
         placeholder="Курс"
         selectedIndex={selectedCourseIndex}
         onSelect={(index) => setSelectedCourseIndex(index)}
@@ -90,12 +98,13 @@ const Registration = () => {
       </Select>
 
       <Input
+        style={styles.formItem}
         placeholder="Пароль"
-        value={value}
-        onChangeText={(nextValue) => setValue(nextValue)}
+        value={passwordValue}
+        onChangeText={(nextValue) => setPasswordValue(nextValue)}
       />
 
-      <Button>Реєстрація</Button>
+      <Button style={styles.button}>Реєстрація</Button>
 
     </Layout>
   );
@@ -107,6 +116,19 @@ const styles = StyleSheet.create({
     paddingTop: 45,
     paddingHorizontal: 15,
     justifyContent: "center",
+  },
+  headline: {
+    textAlign: 'center',
+    marginBottom: 40,
+  },
+  formItem: {
+    marginBottom: 15,
+    backgroundColor: 'transparent',
+    borderBottomWidth: 2,
+    
+  },
+  button: {
+    marginTop: 40,
   },
 });
 
